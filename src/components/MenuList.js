@@ -1,10 +1,10 @@
 import React from "react";
 import MediaCard from "./MediaCard";
 
-function MenuList() {
+function MenuList(props) {
   return (
     <div>
-      <MediaCard></MediaCard>
+      <MediaCard data={props.data}></MediaCard>
     </div>
   );
 }

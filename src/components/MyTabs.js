@@ -1,13 +1,16 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { AppBar, Tab, Tabs } from "@material-ui/core";
 
 import MenuList from "./MenuList";
+import { DataContext } from "../store/DataContext";
 
 export default function MyTabs() {
+  const data = useContext(DataContext);
   const [selectedTab, setSelectedTab] = useState(0);
 
   const handleChange = (event, newValue) => {
     setSelectedTab(newValue);
+    console.log(newValue);
   };
 
   function TabPanel(props) {
@@ -30,38 +33,25 @@ export default function MyTabs() {
     <div>
       <AppBar position="static">
         <Tabs value={selectedTab} onChange={handleChange}>
-          <Tab label="Tab 1" id="tab-0" aria-controls="tabpanel-0" />
-          <Tab label="Tab 2" id="tab-1" aria-controls="tabpanel-1" />
-          <Tab label="Tab 3" id="tab-0" aria-controls="tabpanel-2" />{" "}
-          <Tab label="Tab 4" id="tab-0" aria-controls="tabpanel-3" />{" "}
-          <Tab label="Tab 5" id="tab-0" aria-controls="tabpanel-4" />{" "}
-          <Tab label="Tab 6" id="tab-0" aria-controls="tabpanel-5" />{" "}
+          {data[0]?.table_menu_list.map((dish, index) => {
+            return (
+              <Tab
+                label={dish.menu_category}
+                id={`tabpanel-${index}`}
+                aria-controls={`tab-${index}`}
+              />
+            );
+          })}
         </Tabs>
       </AppBar>
-      <TabPanel value={selectedTab} index={0}>
-        {/* Render your component here */}
-        <MenuList />
-      </TabPanel>
-      <TabPanel value={selectedTab} index={1}>
-        {/* Render another component here */}
-        <MenuList />
-      </TabPanel>
-      <TabPanel value={selectedTab} index={2}>
-        {/* Render another component here */}
-        <MenuList />
-      </TabPanel>
-      <TabPanel value={selectedTab} index={3}>
-        {/* Render another component here */}
-        <MenuList />
-      </TabPanel>
-      <TabPanel value={selectedTab} index={4}>
-        {/* Render another component here */}
-        <MenuList />
-      </TabPanel>
-      <TabPanel value={selectedTab} index={5}>
-        {/* Render another component here */}
-        <MenuList />
-      </TabPanel>
+
+      {data[0]?.table_menu_list.map((dish, index) => {
+        return (
+          <TabPanel value={selectedTab} index={index}>
+            <MenuList data={dish.category_dishes} />
+          </TabPanel>
+        );
+      })}
     </div>
   );
 }

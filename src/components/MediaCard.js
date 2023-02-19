@@ -1,114 +1,33 @@
-import React from "react";
 import Counter from "./Counter";
 import "./MediaCard.css";
 
-function MediaCard() {
+function MediaCard(props) {
+  const data = props.data;
+  console.log(data);
   return (
     <div>
-      <div class="card">
-        <div class="container">
-          <h2>
-            <b>Nadan Kerala Beef Ularth</b>
-          </h2>
-          <div className="spa">
-            <h4>SAR 13</h4>
-            <h4>300 Cal</h4>
+      {data?.map((dish) => {
+        return (
+          <div class="card">
+            <div class="container">
+              <h2>
+                <b>{dish.dish_name}</b>
+              </h2>
+              <div className="spa">
+                <h4>price :{dish.dish_price} SAR</h4>
+                <h4>Calories:{dish.dish_calories}Cals</h4>
+              </div>
+              <p>{dish.dish_description}</p>
+              <Counter></Counter>
+              {dish.addonCat.length ? <h3>Customization Available</h3> : null}
+            </div>
+            <img
+              src="https://static.onecms.io/wp-content/uploads/sites/19/2005/07/25/hot-cold-chicken-spinach-salad-su-2000.jpg"
+              alt="Food"
+            />
           </div>
-          <p>
-            Some text goes here text goes here text goes here text goes here
-            text goes here text goes here text goes here text goes here text
-            goes here Some text goes here text goes here text goes here text
-            goes here text goes here text goes here text goes here text goes
-            here text goes here Some text goes here text goes here text goes
-            here text goes here text goes here text goes here text goes here
-            text goes here text goes here.
-          </p>
-          <Counter></Counter>
-          <h3>Customization Available</h3>
-        </div>
-        <img
-          src="https://www.corriecooks.com/wp-content/uploads/2018/09/Instant-Pot-Kerala-Beef-Fry.jpg"
-          alt="Food"
-        />
-      </div>
-      <div class="card">
-        <div class="container">
-          <h2>
-            <b>Nadan Kerala Beef Ularth</b>
-          </h2>
-          <div className="spa">
-            <h4>SAR 13</h4>
-            <h4>300 Cal</h4>
-          </div>
-          <p>
-            Some text goes here text goes here text goes here text goes here
-            text goes here text goes here text goes here text goes here text
-            goes here Some text goes here text goes here text goes here text
-            goes here text goes here text goes here text goes here text goes
-            here text goes here Some text goes here text goes here text goes
-            here text goes here text goes here text goes here text goes here
-            text goes here text goes here.
-          </p>
-          <Counter></Counter>
-          <h3>Customization Available</h3>
-        </div>
-        <img
-          src="https://www.corriecooks.com/wp-content/uploads/2018/09/Instant-Pot-Kerala-Beef-Fry.jpg"
-          alt="Food"
-        />
-      </div>
-      <div class="card">
-        <div class="container">
-          <h2>
-            <b>Nadan Kerala Beef Ularth</b>
-          </h2>
-          <div className="spa">
-            <h4>SAR 13</h4>
-            <h4>300 Cal</h4>
-          </div>
-          <p>
-            Some text goes here text goes here text goes here text goes here
-            text goes here text goes here text goes here text goes here text
-            goes here Some text goes here text goes here text goes here text
-            goes here text goes here text goes here text goes here text goes
-            here text goes here Some text goes here text goes here text goes
-            here text goes here text goes here text goes here text goes here
-            text goes here text goes here.
-          </p>
-          <Counter></Counter>
-          <h3>Customization Available</h3>
-        </div>
-        <img
-          src="https://www.corriecooks.com/wp-content/uploads/2018/09/Instant-Pot-Kerala-Beef-Fry.jpg"
-          alt="Food"
-        />
-      </div>
-      <div class="card">
-        <div class="container">
-          <h2>
-            <b>Nadan Kerala Beef Ularth</b>
-          </h2>
-          <div className="spa">
-            <h4>Price : SAR 13</h4>
-            <h4>Energy(per serving)300 Cal</h4>
-          </div>
-          <p>
-            Some text goes here text goes here text goes here text goes here
-            text goes here text goes here text goes here text goes here text
-            goes here Some text goes here text goes here text goes here text
-            goes here text goes here text goes here text goes here text goes
-            here text goes here Some text goes here text goes here text goes
-            here text goes here text goes here text goes here text goes here
-            text goes here text goes here.
-          </p>
-          <Counter></Counter>
-          <h3>Customization Available</h3>
-        </div>
-        <img
-          src="https://www.corriecooks.com/wp-content/uploads/2018/09/Instant-Pot-Kerala-Beef-Fry.jpg"
-          alt="Food"
-        />
-      </div>
+        );
+      })}
     </div>
   );
 }
