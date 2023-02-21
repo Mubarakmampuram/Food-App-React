@@ -5,7 +5,7 @@ import MenuList from "./MenuList";
 import { DataContext } from "../store/DataContext";
 
 export default function MyTabs() {
-  const data = useContext(DataContext);
+  const { data } = useContext(DataContext);
   const [selectedTab, setSelectedTab] = useState(0);
 
   const handleChange = (event, newValue) => {

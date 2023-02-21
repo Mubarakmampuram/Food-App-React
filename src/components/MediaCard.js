@@ -18,7 +18,7 @@ function MediaCard(props) {
                 <h4>Calories:{dish.dish_calories}Cals</h4>
               </div>
               <p>{dish.dish_description}</p>
-              <Counter></Counter>
+              <Counter id={dish.dish_id}></Counter>
               {dish.addonCat.length ? <h3>Customization Available</h3> : null}
             </div>
             <img

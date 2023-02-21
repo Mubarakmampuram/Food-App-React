@@ -5,7 +5,7 @@ import "./Header.css";
 import { DataContext } from "../store/DataContext";
 
 function Header() {
-  const data = useContext(DataContext);
+  const { data, cart } = useContext(DataContext);
   console.log(data);
   // console.log(data[0].restaurant_name);
   // console.log(data[0].table_menu_list);
@@ -20,7 +20,11 @@ function Header() {
         <span className="icon">
           <AddShoppingCartIcon />
         </span>
-        <span>(6)</span>
+        <span>
+          {Object.values(cart).reduce((acc, cv) => {
+            return (acc += cv);
+          }, 0)}
+        </span>
       </h3>
     </div>
   );

@@ -1,8 +1,26 @@
-import React from "react";
+import React, { useContext } from "react";
+import { DataContext } from "../store/DataContext";
 import "./Counter.css";
 
-function Counter(props) {
-  console.log(props.id);
+function Counter({ id }) {
+  const { addItem, cart } = useContext(DataContext);
+
+  // const [dishCount, setDishCount] = useState(0);
+  // const addItem = (id) => {
+  //   console.log(id);
+  //   setDishCount(dishCount + 1);
+  //   const count = {
+  //     id,
+  //     dishCount,
+  //   };
+  //   localStorage.setItem("count", JSON.stringify(count));
+  // };
+  // const removeItem = (id) => {
+  //   if (dishCount) {
+  //     setDishCount(dishCount - 1);
+  //   }
+  // };
+
   return (
     <div>
       <div className="counter">
@@ -10,9 +28,9 @@ function Counter(props) {
           <li>
             <button>-</button>
           </li>
-          <li>5</li>
+          <li>{cart[id] || 0}</li>
           <li>
-            <button>+</button>
+            <button onClick={() => addItem(id)}>+</button>
           </li>
         </ul>
       </div>
