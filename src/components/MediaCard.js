@@ -1,9 +1,7 @@
 import Counter from "./Counter";
 import "./MediaCard.css";
 
-function MediaCard(props) {
-  const data = props.data;
-  console.log(data);
+function MediaCard({ data }) {
   return (
     <div>
       {data?.map((dish) => {
@@ -18,7 +16,7 @@ function MediaCard(props) {
                 <h4>Calories:{dish.dish_calories}Cals</h4>
               </div>
               <p>{dish.dish_description}</p>
-              <Counter id={dish.dish_id}></Counter>
+              <Counter values={dish.dish_id}></Counter>
               {dish.addonCat.length ? <h3>Customization Available</h3> : null}
             </div>
             <img

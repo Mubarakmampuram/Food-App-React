@@ -24,15 +24,26 @@ export default function Data({ children }) {
       });
   };
   const addItem = (id) => {
-    const a = cart[id] || 0;
+    const currentCount = cart[id] || 0;
 
     const cartTemp = {
       ...cart,
-      [id]: a + 1,
+      [id]: currentCount + 1,
     };
     setCart(cartTemp);
 
     localStorage.setItem("cart", JSON.stringify(cartTemp));
+  };
+  const removeItem = (id) => {
+    const currentCount = cart[id];
+    if (currentCount) {
+      const cartTemp = {
+        ...cart,
+        [id]: currentCount - 1,
+      };
+      setCart(cartTemp);
+      localStorage.setItem("cart", JSON.stringify(cartTemp));
+    }
   };
 
   useEffect(() => {
@@ -40,7 +51,7 @@ export default function Data({ children }) {
   }, []);
 
   return (
-    <DataContext.Provider value={{ data, addItem, cart }}>
+    <DataContext.Provider value={{ data, addItem, removeItem, cart }}>
       {children}
     </DataContext.Provider>
   );

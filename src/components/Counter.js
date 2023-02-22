@@ -3,30 +3,14 @@ import { DataContext } from "../store/DataContext";
 import "./Counter.css";
 
 function Counter({ id }) {
-  const { addItem, cart } = useContext(DataContext);
-
-  // const [dishCount, setDishCount] = useState(0);
-  // const addItem = (id) => {
-  //   console.log(id);
-  //   setDishCount(dishCount + 1);
-  //   const count = {
-  //     id,
-  //     dishCount,
-  //   };
-  //   localStorage.setItem("count", JSON.stringify(count));
-  // };
-  // const removeItem = (id) => {
-  //   if (dishCount) {
-  //     setDishCount(dishCount - 1);
-  //   }
-  // };
+  const { addItem, cart, removeItem } = useContext(DataContext);
 
   return (
     <div>
       <div className="counter">
         <ul>
           <li>
-            <button>-</button>
+            <button onClick={() => removeItem(id)}>-</button>
           </li>
           <li>{cart[id] || 0}</li>
           <li>

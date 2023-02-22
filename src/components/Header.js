@@ -3,6 +3,7 @@ import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { useContext } from "react";
 import "./Header.css";
 import { DataContext } from "../store/DataContext";
+import BasicModal from "./Modal";
 
 function Header() {
   const { data, cart } = useContext(DataContext);
@@ -25,6 +26,9 @@ function Header() {
             return (acc += cv);
           }, 0)}
         </span>
+      </h3>
+      <h3>
+        <BasicModal />
       </h3>
     </div>
   );
