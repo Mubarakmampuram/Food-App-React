@@ -24,6 +24,7 @@ export default function Data({ children }) {
       });
   };
   const addItem = (id) => {
+    console.log(id);
     const currentCount = cart[id] || 0;
 
     const cartTemp = {

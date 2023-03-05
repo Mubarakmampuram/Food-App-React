@@ -1,20 +1,27 @@
-import React, { useContext } from "react";
-import { DataContext } from "../store/DataContext";
+import { useSelect } from "@mui/base";
+import React, from "react";
+import { useDispatch } from "react-redux";
+import { increment, decrement } from "../redux/cart";
+//import { increment } from "../redux/cart";
+//import { DataContext } from "../store/DataContext";
 import "./Counter.css";
 
 function Counter({ id }) {
-  const { addItem, cart, removeItem } = useContext(DataContext);
+  //let id = props.value;
+
+  const { cartItems = {} } = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
 
   return (
     <div>
       <div className="counter">
         <ul>
           <li>
-            <button onClick={() => removeItem(id)}>-</button>
+            <button onClick={() => disptach(decrement(id))}>-</button>
           </li>
-          <li>{cart[id] || 0}</li>
+          <li>{cartItems[id] || 0}</li>
           <li>
-            <button onClick={() => addItem(id)}>+</button>
+            <button onClick={() => disptach(increment(id))}>+</button>
           </li>
         </ul>
       </div>

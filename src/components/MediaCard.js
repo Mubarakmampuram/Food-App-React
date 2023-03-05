@@ -5,9 +5,10 @@ function MediaCard({ data }) {
   return (
     <div>
       {data?.map((dish) => {
+        //console.log(dish.dish_id);
         return (
-          <div class="card">
-            <div class="container">
+          <div className="card">
+            <div className="container">
               <h2>
                 <b>{dish.dish_name}</b>
               </h2>
@@ -16,7 +17,8 @@ function MediaCard({ data }) {
                 <h4>Calories:{dish.dish_calories}Cals</h4>
               </div>
               <p>{dish.dish_description}</p>
-              <Counter values={dish.dish_id}></Counter>
+              <p>{dish.dish_id}</p>
+              <Counter id={dish.dish_id}></Counter>
               {dish.addonCat.length ? <h3>Customization Available</h3> : null}
             </div>
             <img

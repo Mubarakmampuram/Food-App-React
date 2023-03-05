@@ -1,15 +1,18 @@
 import React from "react";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import { useContext } from "react";
+import { useSelector } from "react-redux";
 import "./Header.css";
-import { DataContext } from "../store/DataContext";
-import BasicModal from "./Modal";
+
+//import { DataContext } from "../store/DataContext";
+//import BasicModal from "./Modal";
 
 function Header() {
-  const { data, cart } = useContext(DataContext);
-  console.log(data);
-  // console.log(data[0].restaurant_name);
-  // console.log(data[0].table_menu_list);
+  const { cartItems = {} } = useSelector((state) => state.cart);
+
+  const totalCartCount = Object.values(cartItems).reduce(
+    (acc, value) => (acc += value.count),
+    0
+  );
   if (!data) {
     return null;
   }
@@ -21,14 +24,7 @@ function Header() {
         <span className="icon">
           <AddShoppingCartIcon />
         </span>
-        <span>
-          {Object.values(cart).reduce((acc, cv) => {
-            return (acc += cv);
-          }, 0)}
-        </span>
-      </h3>
-      <h3>
-        <BasicModal />
+        <span>{totalCartCount}</span>
       </h3>
     </div>
   );
